@@ -3,7 +3,7 @@ import { View, Text, Image } from 'react-native';
 import Icon from 'react-native-vector-icons/AntDesign'; 
 import mando from '../assets/mando.jpg';
 
-const ConfigProfile = () => {
+const Profile = () => {
   return (
     <View style={styles.configuracionUsuario}>
       <Icon name="stepbackward" style={styles.returnButtonFrame} />
@@ -168,4 +168,4 @@ const styles = {
   },
 };
 
-export default ConfigProfile;
+export default Profile;
