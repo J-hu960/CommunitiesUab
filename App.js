@@ -7,7 +7,7 @@ import Icon from 'react-native-vector-icons/AntDesign';
 
 import HomeScreen  from './screens/HomeScreen';
 import { NewCommunity } from './screens/NewCommunity';
-import { Profile } from './screens/Profile';
+import  Profile  from './screens/Profile';
 import Login from './screens/No-Auth/Login';
 import Register from './screens/No-Auth/Register';
 

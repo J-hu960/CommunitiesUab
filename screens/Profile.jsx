@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, Image } from 'react-native';
+import { View, Text, Image, TextInput } from 'react-native';
 import Icon from 'react-native-vector-icons/AntDesign'; 
 import mando from '../assets/mando.jpg';
 
@@ -15,14 +15,14 @@ const Profile = () => {
         <View style={styles.frame38}>
           <View style={styles.input}>
             <Text style={styles.cambiarNombreDeUsuario}>Cambiar nombre de usuario</Text>
-            <Input style={styles.rectangle15}/>
+            <TextInput style={styles.rectangle15}/>
           </View>
           <View style={styles.input}>
             <Text style={styles.cambiarContrasena}>Cambiar contraseña</Text>
-            <Input style={styles.rectangle15}/>
+            <TextInput style={styles.rectangle15}/>
           </View>
           <View style={styles.unirteButton}>
-          <Input style={styles.rectangle15}/>
+          <TextInput style={styles.rectangle15}/>
             <Text style={styles.guardarCambios}>Guardar cambios</Text>
           </View>
           <View style={styles.eliminarBoton}>
