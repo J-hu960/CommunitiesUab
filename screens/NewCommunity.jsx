@@ -1,11 +1,11 @@
 import React from 'react'
-import { View, Text, Image, TouchableOpacity, ScrollView, Pressable } from 'react-native'
+import { View, Text, Image, TouchableOpacity, ScrollView, Pressable, TextInput } from 'react-native'
 import Icon from 'react-native-vector-icons/AntDesign'; 
 import mando from '../assets/mando.jpg';
 
 export const NewCommunity = () => {
   return (
-    <View style={styles.crearComunidadAutoLayout}>
+    <ScrollView style={styles.crearComunidadAutoLayout}>
       <View style={styles.bienvenidoFrame}>
         <Text style={styles.bienvenidoNombreUsuario}>Bienvenido, nombreUsuario</Text>
         <Image source={mando} style={styles.ellipse4} />
@@ -14,7 +14,7 @@ export const NewCommunity = () => {
         <Icon name="stepbackward" style={styles.returnButtonFrame} />
         <Text style={styles.crearComunidad}>CREAR COMUNIDAD</Text>
         <Text style={styles.nombreDeLaComunidad}>Nombre de la Comunidad:</Text>
-        <View style={styles.nombreComunidadBox}></View>
+        <TextInput style={styles.nombreComunidadBox}></TextInput>
         <Text style={styles.indicaLaCategoriaDeLaComunidad}>Indica la categoria de la comunidad:</Text>
         <View style={styles.nombreComunidadBox2}>
           <Icon name="down" style={styles.deployButton} />
@@ -22,17 +22,18 @@ export const NewCommunity = () => {
         <Text style={styles.aAdeFotosDeTuComunidad}>Añade fotos de tu comunidad:</Text>
         <Icon name="clouduploado" style={styles.uploadButtonFrame} />
         <Text style={styles.linkUrlDeTuChatPrivadoDeLaComunidad}>Link/Url de tu chat privado de la comunidad:</Text>
-        <View style={styles.linkComunidadBox}></View>
+        <TextInput style={styles.linkComunidadBox}></TextInput>
         <Text style={styles.descripcionDeTuComunidad}>Descripción de tu comunidad:</Text>
-        <View style={styles.descripcionComunidadBox}></View>
+        <TextInput style={styles.descripcionComunidadBox}></TextInput>
         <View style={styles.frame33}>
           <View style={styles.group20}>
-            <View style={styles.rectangle32}></View>
-            <Text style={styles.crear}>Crear</Text>
+            <View style={styles.rectangle32}>
+                <Text style={styles.crear}>Crear</Text>
+            </View>
           </View>
         </View>
       </View>
-    </View>
+    </ScrollView>
   );
 }
 const styles = {
@@ -40,11 +41,11 @@ const styles = {
     backgroundColor: '#cee4ca',
     borderWidth: 1,
     borderColor: '#000000',
-    alignItems: 'center',
-    justifyContent: 'flex-start',
-    height: 852,
-    position: 'relative',
-    overflow: 'hidden',
+    display:'flex',
+    flexDirection:'column',
+    flex:1,
+    width:'100%',
+    marginTop:40
   },
   bienvenidoFrame: {
     backgroundColor: '#669579',
@@ -53,7 +54,7 @@ const styles = {
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
-    width: 407,
+    width: '100%',
     height: 60,
   },
   bienvenidoNombreUsuario: {
@@ -74,8 +75,8 @@ const styles = {
     padding: 10,
     flexDirection: 'column',
     alignItems: 'flex-start',
-    width: 379,
-    height: 743,
+    width: '100%',
+    height:'100%'
   },
   returnButtonFrame: {
     borderRadius: 20,
@@ -88,7 +89,7 @@ const styles = {
     fontFamily: 'Inter-Regular',
     fontSize: 22,
     fontWeight: '400',
-    width: 267,
+    width: '100%',
     height: 27,
   },
   nombreDeLaComunidad: {
@@ -102,6 +103,8 @@ const styles = {
     backgroundColor: '#eeeded',
     borderRadius: 5,
     height: 27,
+    width:'100%',
+    padding:3
   },
   indicaLaCategoriaDeLaComunidad: {
     color: '#000000',
@@ -116,6 +119,7 @@ const styles = {
     flexDirection: 'column',
     alignItems: 'flex-end',
     height: 27,
+    width:'100%'
   },
   deployButton: {
     paddingVertical: 8,
@@ -133,7 +137,7 @@ const styles = {
   uploadButtonFrame: {
     borderRadius: 20,
     paddingVertical: 5,
-    paddingHorizontal: 7,
+    paddingHorizontal: 7,   
   },
   linkUrlDeTuChatPrivadoDeLaComunidad: {
     color: '#000000',
@@ -147,6 +151,7 @@ const styles = {
     backgroundColor: '#eeeded',
     borderRadius: 5,
     height: 27,
+    width:'100%'
   },
   descripcionDeTuComunidad: {
     color: '#000000',
@@ -154,32 +159,39 @@ const styles = {
     fontFamily: 'Inter-Regular',
     fontSize: 18,
     fontWeight: '400',
+
   },
   descripcionComunidadBox: {
     backgroundColor: '#eeeded',
     borderRadius: 5,
-    height: 164,
+    height: 120,
+    width:'100%',
+    display:'flex',
+    alignItems:'flex-start',
+    justifyContent:'flex-start'
   },
   frame33: {
     backgroundColor: '#ffffff',
     flexDirection: 'column',
     alignItems: 'center',
     justifyContent: 'center',
-    width: 310,
+    width: '100%',
     height: 29,
+    display:'flex'
   },
   group20: {
-    width: 134,
+    width: '100%',
     height: 29,
   },
   rectangle32: {
     backgroundColor: '#579770',
     borderRadius: 20,
-    width: 134,
-    height: 29,
-    position: 'absolute',
-    left: 88,
-    top: 0,
+    width: '100%',
+    height: 40,
+    top: 10,
+    display:'flex',
+    alignItems:'center',
+    justifyContent:'center'
   },
   crear: {
     color: '#ffffff',
@@ -187,9 +199,7 @@ const styles = {
     fontFamily: 'Inter-Bold',
     fontSize: 24,
     fontWeight: '700',
-    position: 'absolute',
-    left: '50%',
-    top: '50%',
+
   },
 };
 
