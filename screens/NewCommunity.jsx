@@ -10,8 +10,11 @@ export const NewCommunity = () => {
         <Text style={styles.bienvenidoNombreUsuario}>Bienvenido, nombreUsuario</Text>
         <Image source={mando} style={styles.ellipse4} />
       </View>
+      <Pressable>
+      <Icon name="back" size={30} color="black" />
+
+      </Pressable>
       <View style={styles.boxComunidadFrame}>
-        <Icon name="stepbackward" style={styles.returnButtonFrame} />
         <Text style={styles.crearComunidad}>CREAR COMUNIDAD</Text>
         <Text style={styles.nombreDeLaComunidad}>Nombre de la Comunidad:</Text>
         <TextInput style={styles.nombreComunidadBox}></TextInput>
@@ -43,9 +46,9 @@ const styles = {
     borderColor: '#000000',
     display:'flex',
     flexDirection:'column',
+    height:'100%',
     flex:1,
     width:'100%',
-    marginTop:40
   },
   bienvenidoFrame: {
     backgroundColor: '#669579',
@@ -76,7 +79,8 @@ const styles = {
     flexDirection: 'column',
     alignItems: 'flex-start',
     width: '100%',
-    height:'100%'
+    height:'100%',
+    marginTop:80
   },
   returnButtonFrame: {
     borderRadius: 20,

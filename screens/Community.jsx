@@ -1,17 +1,22 @@
 import React from 'react';
-import { View, Text, Image } from 'react-native';
-import Icon from 'react-native-vector-icons/AntDesign'; 
+import { View, Text, Image, Pressable } from 'react-native';
 import mando from '../assets/mando.jpg';
+import Icon from 'react-native-vector-icons/AntDesign'; 
 
-const Community = () => {
+ const Community = () => {
   return (
     <View style={styles.comunidad}>
       <View style={styles.bienvenidoFrame}>
         <Text style={styles.bienvenidoNombreUsuario}>Bienvenido, nombreUsuario</Text>
         <Image source={mando} style={styles.ellipse4} />
       </View>
-      <Icon name="stepbackward" style={styles.returnButtonFrame} />
-      <Image source={mando} style={styles.rectangle14} />
+      <Pressable> 
+      <Icon name="back" size={30} color="black"  style={styles.returnButtonFrame} />      
+
+      </Pressable>
+      <View style={{display:'flex',width:'100%',height:'auto',alignItems:'center',justifyContent:'center'}}>
+         <Image source={mando} style={styles.rectangle14} />
+      </View>
       <View style={styles.botonesImagenes}>
         <Icon name="left" style={styles.frame} />
         <Icon name="right" style={styles.frame2} />
@@ -19,38 +24,29 @@ const Community = () => {
       <View style={styles.descripcion}>
         <Text style={styles.comunidadDeFutbol7}>Comunidad de futbol 7</Text>
         <Text style={styles.bienvenidos}>¡Bienvenidos a nuestra comunidad de fútbol universitario, donde el deporte se convierte en pasión y la camaradería se fusiona con la competencia! En nuestra comunidad, celebramos la diversidad de habilidades y experiencias, uniendo a estudiantes de todas las facultades y niveles de destreza bajo el emocionante estandarte del fútbol.{'\n\n'}Ya sea que seas un aficionado casual que busca disfrutar del juego o un jugador experimentado en busca de desafíos, encontrarás un lugar aquí.</Text>
-        <View style={styles.button}>
-          <Button Text="Unirse" style={styles.unirse}></Button>
-        </View>
+        <Pressable style={styles.button}>
+          <Text style={styles.unirse}>Unirse</Text>
+        </Pressable>
       </View>
-      <View style={styles.bottomBar}>
-        <Icon name="diff-added" style={styles.frame3} />
-        <Icon name="home" style={styles.frame4} />
-        <Icon name="user" style={styles.frame5} />
-      </View>
+     
     </View>
   );
 };
 
 const styles = {
   comunidad: {
+    flex: 1,
     backgroundColor: '#ffffff',
-    borderWidth: 1,
-    borderColor: '#000000',
-    alignItems: 'flex-start',
-    justifyContent: 'flex-start',
-    height: 852,
-    position: 'relative',
-    overflow: 'hidden',
+    alignItems: 'center',
+    justifyContent: 'space-between',
   },
   bienvenidoFrame: {
     backgroundColor: '#669579',
-    paddingVertical: 3,
     paddingHorizontal: 15,
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
-    width: 407,
+    width: '100%',
     height: 60,
   },
   bienvenidoNombreUsuario: {
@@ -66,14 +62,12 @@ const styles = {
     height: 44,
   },
   returnButtonFrame: {
-    borderRadius: 20,
-    paddingVertical: 5,
-    paddingHorizontal: 7,
-    width: 43,
-    height: 40,
+    position:'fixed',
+    top:130,
+    left:10,
+    
   },
   rectangle14: {
-    alignSelf: 'stretch',
     height: 230,
   },
   botonesImagenes: {

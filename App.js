@@ -10,6 +10,8 @@ import { NewCommunity } from './screens/NewCommunity';
 import  Profile  from './screens/Profile';
 import Login from './screens/No-Auth/Login';
 import Register from './screens/No-Auth/Register';
+import MyCommunities from './screens/MyCommunities';
+import Community from './screens/Community';
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -21,6 +23,7 @@ const App = () => {
         <Stack.Screen name="Main" component={MainTabs}  options={{headerShown: false}} />
         <Stack.Screen name="Login" component={Login} options={{ headerShown: false }}  />
         <Stack.Screen name="Register" component={Register} options={{ headerShown: false }}  />
+
       </Stack.Navigator>
     </NavigationContainer>
   );
@@ -28,9 +31,11 @@ const App = () => {
 function MainTabs() {
   return (
     <Tab.Navigator>
-          <Tab.Screen name="New Community"  options={{ tabBarIcon:()=>(<Icon name="pluscircleo" size={30} color="black" />),headerShown: false }} component={NewCommunity} />
           <Tab.Screen name="Home"  options={{headerShown: false , tabBarIcon:()=>(<Icon name="home" size={30} color="black" />) }}  component={HomeScreen} />
-          <Tab.Screen name="Profile" options={{tabBarIcon:()=>(<Icon name="user" size={30} color="black" />) }}   component={Profile} />
+          <Tab.Screen name="New Community"  options={{ headerShown: false,tabBarIcon:()=>(<Icon name="pluscircleo" size={30} color="black" />),headerShown: false }} component={NewCommunity} />
+          <Tab.Screen name="MyCommunities"  options={{headerShown: false,tabBarIcon:()=>(<Icon name="inbox" size={30} color="black" />) }}  component={MyCommunities} />
+          <Tab.Screen name="Profile" options={{headerShown: false,tabBarIcon:()=>(<Icon name="user" size={30} color="black" />) }}   component={Profile} />
+
 
     </Tab.Navigator>
   );

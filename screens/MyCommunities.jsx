@@ -1,8 +1,9 @@
 import React from 'react';
-import { View, Text, Image } from 'react-native';
-import Icon from 'react-native-vector-icons/AntDesign';
+import { View, Text, Image,Pressable, ScrollView } from 'react-native';
+import Icon from 'react-native-vector-icons/AntDesign'; 
 import mando from '../assets/mando.jpg';
 import { Button } from 'react-native-web';
+import MyCommunity from '../components/MyCommunity';
 
 const MyCommunities = () => {
   return (
@@ -11,107 +12,47 @@ const MyCommunities = () => {
         <Text style={styles.bienvenidoNombreUsuario}>Bienvenido, nombreUsuario</Text>
         <Image source={mando}  style={styles.ellipse4} />
       </View>
+      <Pressable style={{display:'flex',width:'100%',justifyContent:'flex-start',marginTop:10}}> 
+          <Icon name="back" size={30} color="black"  style={styles.returnButtonFrame} />      
+      </Pressable> 
       <View style={styles.frame44}>
-        <Icon name="stepbackward" style={styles.returnButtonFrame} />
-        <View style={styles.frame51}>
+             
+      <View style={styles.frame51}>
           <Text style={styles.administraTusComunidades}>Administra tus comunidades:</Text>
         </View>
-        <View style={styles.frame45}>
-          <Image source={mando} style={styles.rectangle11} />
-          <Text style={styles.comunidadDeVideojuegos}>Comunidad de videojuegos</Text>
-          <View style={styles.frame46}>
-            <View style={styles.group21}>
-              <View style={styles.rectangle41}></View>
-              <Button Text="Eliminar" style={styles.eliminar}></Button>
-            </View>
-            <View style={styles.group22}>
-              <View style={styles.rectangle412}></View>
-              <Button Text="Editar"  style={styles.editar}></Button>
-            </View>
-          </View>
-        </View>
-        <View style={styles.frame45}>
-          <Image source={mando} style={styles.rectangle11} />
-          <Text style={styles.comunidadDeVideojuegos}>Comunidad de videojuegos</Text>
-          <View style={styles.frame46}>
-            <View style={styles.group21}>
-              <View style={styles.rectangle41}></View>
-              <Button Text="Eliminar" style={styles.eliminar}></Button>
-            </View>
-            <View style={styles.group22}>
-              <View style={styles.rectangle412}></View>
-              <Button Text="Editar"  style={styles.editar}></Button>
-            </View>
-          </View>
-        </View>
+
+        <ScrollView style={{display:'flex',flex:1,flexDirection:'column',width:'100%'}}>
+          <MyCommunity />
+          <MyCommunity />
+          <MyCommunity />
+          <MyCommunity />
+          <MyCommunity />
+          <MyCommunity />
+          <MyCommunity />
+          <MyCommunity />
+          <MyCommunity />
+          <MyCommunity />
+          <MyCommunity />
+          <MyCommunity />
+          <MyCommunity />
+          <MyCommunity />
+
+
+
+        </ScrollView>
+     
       </View>
-      <View style={styles.frame45}>
-          <Image source={mando} style={styles.rectangle11} />
-          <Text style={styles.comunidadDeVideojuegos}>Comunidad de videojuegos</Text>
-          <View style={styles.frame46}>
-            <View style={styles.group21}>
-              <View style={styles.rectangle41}></View>
-              <Button Text="Eliminar" style={styles.eliminar}></Button>
-            </View>
-            <View style={styles.group22}>
-              <View style={styles.rectangle412}></View>
-              <Button Text="Editar"  style={styles.editar}></Button>
-            </View>
-          </View>
-        </View>
-        <View style={styles.frame45}>
-          <Image source={mando} style={styles.rectangle11} />
-          <Text style={styles.comunidadDeVideojuegos}>Comunidad de videojuegos</Text>
-          <View style={styles.frame46}>
-            <View style={styles.group21}>
-              <View style={styles.rectangle41}></View>
-              <Button Text="Eliminar" style={styles.eliminar}></Button>
-            </View>
-            <View style={styles.group22}>
-              <View style={styles.rectangle412}></View>
-              <Button Text="Editar"  style={styles.editar}></Button>
-            </View>
-          </View>
-        </View>
-        <View style={styles.frame45}>
-          <Image source={mando} style={styles.rectangle11} />
-          <Text style={styles.comunidadDeVideojuegos}>Comunidad de videojuegos</Text>
-          <View style={styles.frame46}>
-            <View style={styles.group21}>
-              <View style={styles.rectangle41}></View>
-              <Button Text="Abandonar" style={styles.eliminar}></Button>
-            </View>
-          </View>
-        </View>
-        <View style={styles.frame45}>
-          <Image source={mando} style={styles.rectangle11} />
-          <Text style={styles.comunidadDeVideojuegos}>Comunidad de videojuegos</Text>
-          <View style={styles.frame46}>
-            <View style={styles.group21}>
-              <View style={styles.rectangle41}></View>
-              <Button Text="Abandonar" style={styles.eliminar}></Button>
-            </View>
-          </View>
-        </View>
-      <View style={styles.bottomBar}>
-        <Icon name="diff-added" style={styles.frame} />
-        <Icon name="home" style={styles.frame2} />
-        <Icon name="user" style={styles.frame3} />
-      </View>
+    
     </View>
   );
 };
 
 const styles = {
   misComunidadesAutoLayout: {
+    flex: 1,
     backgroundColor: '#ffffff',
-    borderWidth: 1,
-    borderColor: '#000000',
     alignItems: 'center',
     justifyContent: 'flex-start',
-    height: 852,
-    position: 'relative',
-    overflow: 'hidden',
   },
   bienvenidoFrame: {
     backgroundColor: '#669579',
@@ -120,7 +61,7 @@ const styles = {
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
-    width: 407,
+    width: '100%',
     height: 60,
   },
   bienvenidoNombreUsuario: {
@@ -136,11 +77,9 @@ const styles = {
     height: 44,
   },
   returnButtonFrame: {
-    borderRadius: 20,
-    paddingVertical: 5,
-    paddingHorizontal: 7,
-    width: 43,
-    height: 40,
+    postion:'fixed',
+    top:0,
+    left:2,
   },
   frame44: {
     backgroundColor: '#ffffff',
