@@ -78,9 +78,10 @@ const styles = {
     padding: 10,
     flexDirection: 'column',
     alignItems: 'flex-start',
+    justifyContent:'space-around',
     width: '100%',
-    height:'100%',
-    marginTop:80
+    height:750,
+    marginTop:20
   },
   returnButtonFrame: {
     borderRadius: 20,

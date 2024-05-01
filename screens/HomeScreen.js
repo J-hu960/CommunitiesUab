@@ -68,7 +68,6 @@ const styles = {
     backgroundColor: '#ffffff',
     alignItems: 'center',
     justifyContent: 'flex-start',
-    paddingTop: 40,
   },
   bienvenidoFrame: {
     backgroundColor: '#669579',
