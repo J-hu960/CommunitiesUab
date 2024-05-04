@@ -11,8 +11,7 @@ import Icon from 'react-native-vector-icons/AntDesign';
         <Image source={mando} style={styles.ellipse4} />
       </View>
       <Pressable> 
-      <Icon name="back" size={30} color="black"  style={styles.returnButtonFrame} />      
-
+         <Icon name="back" size={30} color="black"  style={styles.returnButtonFrame} />      
       </Pressable>
       <View style={{display:'flex',width:'100%',height:'auto',alignItems:'center',justifyContent:'center'}}>
          <Image source={mando} style={styles.rectangle14} />
@@ -39,6 +38,7 @@ const styles = {
     backgroundColor: '#ffffff',
     alignItems: 'center',
     justifyContent: 'space-between',
+    paddingBottom:40
   },
   bienvenidoFrame: {
     backgroundColor: '#669579',
@@ -68,7 +68,8 @@ const styles = {
     
   },
   rectangle14: {
-    height: 230,
+    height: 170,
+    marginTop:40,
   },
   botonesImagenes: {
     flexDirection: 'row',

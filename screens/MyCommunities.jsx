@@ -22,23 +22,20 @@ const MyCommunities = () => {
         </View>
 
         <ScrollView style={{display:'flex',flex:1,flexDirection:'column',width:'100%'}}>
-          <MyCommunity />
-          <MyCommunity />
-          <MyCommunity />
-          <MyCommunity />
-          <MyCommunity />
-          <MyCommunity />
-          <MyCommunity />
-          <MyCommunity />
-          <MyCommunity />
-          <MyCommunity />
-          <MyCommunity />
-          <MyCommunity />
-          <MyCommunity />
-          <MyCommunity />
-
-
-
+          <MyCommunity isAdmin={true} />
+          <MyCommunity isAdmin={true} />
+          <MyCommunity isAdmin={true} />
+          <MyCommunity isAdmin={true} />
+          <MyCommunity isAdmin={true} />
+          <MyCommunity isAdmin={true} />
+          <MyCommunity isAdmin={false} />
+          <MyCommunity isAdmin={false} />
+          <MyCommunity isAdmin={false} />
+          <MyCommunity isAdmin={false} />
+          <MyCommunity isAdmin={true} />
+          <MyCommunity isAdmin={true} />
+          <MyCommunity isAdmin={true} />
+          <MyCommunity isAdmin={true} />
         </ScrollView>
      
       </View>

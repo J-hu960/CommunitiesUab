@@ -1,7 +1,9 @@
-import React from 'react';
-import { View, Text, Image, TouchableOpacity, ScrollView, Pressable } from 'react-native';
+import React, { useState } from 'react';
+import { View, Text, Image, TouchableOpacity, ScrollView, Pressable, TextInput } from 'react-native';
 import mando from '../assets/mando.jpg'
 import Icon from 'react-native-vector-icons/AntDesign'; 
+import { createDrawerNavigator } from '@react-navigation/drawer';
+
 const HomeScreen = () => {
   return (
     <>
@@ -13,7 +15,7 @@ const HomeScreen = () => {
       <View style={styles.busquedaFrame}>
         <Text style={styles.conGanasDeExplorar}>Con ganas de explorar?</Text>
         <View style={styles.frame21}>
-          <Text style={styles.buscarTitulo}>Buscar título</Text>
+          <TextInput placeholder='Buscar título' style={styles.buscarTitulo}></TextInput>
           <View style={styles.line4} />
         </View>
       </View>

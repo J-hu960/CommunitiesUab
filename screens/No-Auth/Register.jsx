@@ -15,18 +15,18 @@ const Register = () => {
           <View style={styles.inputContainer}>
             <Text style={styles.label}>Email</Text>
             <View style={styles.inputBox}>
-              <TextInput style={styles.inputTextInput}>...@gmail.com</TextInput>
+              <TextInput  style={styles.inputTextInput}></TextInput>
             </View>
           </View>
           <View style={styles.inputContainer}>
             <Text style={styles.label}>Contraseña</Text>
             <View style={styles.inputBox}>
-              <TextInput style={styles.inputTextInput}>***************</TextInput>
+              <TextInput style={styles.inputTextInput}></TextInput>
             </View>
           </View>
           <View style={styles.inputContainer}>
-            <TextInput style={styles.label}>Nombre de usuario</TextInput>
-            <View style={styles.inputBox}></View>
+          <Text style={styles.label}>Nombre de usuario</Text>
+            <TextInput style={styles.inputBox}></TextInput>
           </View>
         </View>
         <View style={styles.bottom}>
@@ -49,6 +49,7 @@ const styles = {
     alignItems: 'center',
     justifyContent: 'flex-start',
     paddingTop: 0,
+    backgroundColor:'white'
   },
   imageContainer: {
     marginBottom: -180,
@@ -71,6 +72,7 @@ const styles = {
     shadowOpacity: 0.25,
     shadowRadius: 4,
     elevation: 4,
+    marginTop:100
   },
   bienvenido: {
     color: '#000000',

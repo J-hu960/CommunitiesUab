@@ -3,22 +3,36 @@ import { View, Text, Image,Pressable, ScrollView } from 'react-native';
 import Icon from 'react-native-vector-icons/AntDesign'; 
 import mando from '../assets/mando.jpg';
 import { Button } from 'react-native-web';
-const MyCommunity = () => {
+const MyCommunity = ({isAdmin}) => {
   return (
      <View style={{width:'100%',height:'auto',display:'flex',flexDirection:'row',alignItems:'center',justifyContent:'space-around',marginTop:40}}>
           <Image source={mando}  style={styles.ellipse4} />
           <Text>Comunidad de videojuegos</Text>
-          <View style={{display:'flex',flexDirection:'column',rowGap:5}}>
+
+          {isAdmin ? (
+             <View style={{display:'flex',flexDirection:'column',rowGap:5}}>
+             <Pressable style={{backgroundColor:'red',borderRadius:5,width:100,display:'flex',alignItems:'center'}}>
+               <Text style={{color:'white',fontWeight:'bold',padding:3}}>Eliminar</Text>
+             </Pressable>
+             <Pressable style={{backgroundColor:'green',borderRadius:5,width:100,display:'flex',alignItems:'center'}}>
+               <Text style={{color:'white',fontWeight:'bold',padding:3}}>Editar</Text>
+             </Pressable>
+ 
+           </View>
+ 
+
+          ):(
+            <View style={{display:'flex',flexDirection:'column',rowGap:5}}>
             <Pressable style={{backgroundColor:'red',borderRadius:5,width:100,display:'flex',alignItems:'center'}}>
-              <Text style={{color:'white',fontWeight:'bold',padding:3}}>Eliminar</Text>
-            </Pressable>
-            <Pressable style={{backgroundColor:'green',borderRadius:5,width:100,display:'flex',alignItems:'center'}}>
-              <Text style={{color:'white',fontWeight:'bold',padding:3}}>Editar</Text>
+              <Text style={{color:'white',fontWeight:'bold',padding:3}}>Abandonar</Text>
             </Pressable>
 
           </View>
+          )}
+      </View>  
 
-          </View>  )
+         
+  )
 }
 
 export default MyCommunity

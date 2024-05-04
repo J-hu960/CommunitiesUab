@@ -13,13 +13,13 @@ const Login = () => {
           <View style={styles.inputContainer}>
             <Text style={styles.label}>Email</Text>
             <View style={styles.inputBox}>
-              <TextInput style={styles.inputTextInput}>...@gmail.com</TextInput>
+              <TextInput style={styles.inputTextInput}></TextInput>
             </View>
           </View>
           <View style={styles.inputContainer}>
             <Text style={styles.label}>Contraseña</Text>
             <View style={styles.inputBox}>
-              <TextInput style={styles.inputTextInput}>***************</TextInput>
+              <TextInput  style={styles.inputTextInput}></TextInput>
             </View>
           </View>
         </View>
@@ -68,6 +68,8 @@ const styles = {
     shadowOpacity: 0.25,
     shadowRadius: 4,
     elevation: 4,
+    height:400,
+    marginTop:50
   },
   bienvenido: {
     color: '#000000',
