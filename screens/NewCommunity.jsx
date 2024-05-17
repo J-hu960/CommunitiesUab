@@ -11,7 +11,6 @@ export const NewCommunity = () => {
         <Image source={mando} style={styles.ellipse4} />
       </View>
       <Pressable>
-      <Icon name="back" size={30} color="black" />
 
       </Pressable>
       <View style={styles.boxComunidadFrame}>

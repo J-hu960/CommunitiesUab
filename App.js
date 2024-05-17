@@ -23,6 +23,8 @@ const App = () => {
         <Stack.Screen name="Main" component={MainTabs}  options={{headerShown: false}} />
         <Stack.Screen name="Login" component={Login} options={{ headerShown: false }}  />
         <Stack.Screen name="Register" component={Register} options={{ headerShown: false }}  />
+        <Tab.Screen name="Community" options={{headerShown: false,tabBarIcon:()=>(<Icon name="user" size={30} color="black" />) }}   component={Community} />
+
 
       </Stack.Navigator>
     </NavigationContainer>
@@ -35,7 +37,6 @@ function MainTabs() {
           <Tab.Screen name="New Community"  options={{ headerShown: false,tabBarIcon:()=>(<Icon name="pluscircleo" size={30} color="black" />),headerShown: false }} component={NewCommunity} />
           <Tab.Screen name="MyCommunities"  options={{headerShown: false,tabBarIcon:()=>(<Icon name="inbox" size={30} color="black" />) }}  component={MyCommunities} />      
           <Tab.Screen name="Profile" options={{headerShown: false,tabBarIcon:()=>(<Icon name="user" size={30} color="black" />) }}   component={Profile} />
-          <Tab.Screen name="Community" options={{headerShown: false,tabBarIcon:()=>(<Icon name="user" size={30} color="black" />) }}   component={Community} />
           <Tab.Screen name="Login" options={{headerShown: false,tabBarIcon:()=>(<Icon name="user" size={30} color="black" />) }}   component={Login} />
           <Tab.Screen name="Register" options={{headerShown: false,tabBarIcon:()=>(<Icon name="user" size={30} color="black" />) }}   component={Register} />
     </Tab.Navigator>

@@ -3,8 +3,14 @@ import { View, Text, Image, TouchableOpacity, ScrollView, Pressable, TextInput }
 import mando from '../assets/mando.jpg'
 import Icon from 'react-native-vector-icons/AntDesign'; 
 import { createDrawerNavigator } from '@react-navigation/drawer';
+import CategoriasMenu from '../components/CategoriesMenu';
+import { Touchable } from 'react-native-web';
 
-const HomeScreen = () => {
+const HomeScreen = ({navigation}) => {
+
+  const [titleSearch,setTitleSearch]=useState('')
+  const [filterCategory,setFilterCategory] = useState('')
+
   return (
     <>
     <View style={styles.container}>
@@ -15,13 +21,13 @@ const HomeScreen = () => {
       <View style={styles.busquedaFrame}>
         <Text style={styles.conGanasDeExplorar}>Con ganas de explorar?</Text>
         <View style={styles.frame21}>
-          <TextInput placeholder='Buscar título' style={styles.buscarTitulo}></TextInput>
+          <TextInput  onChange={text=>setTitleSearch(text)} placeholder='Buscar título' style={styles.buscarTitulo}></TextInput>
           <View style={styles.line4} />
         </View>
       </View>
       <View style={styles.categoriasFrame}>
         <Text style={styles.categorias}>Categorías</Text>
-        <Icon name="bars" size={30} color="black" />
+        <CategoriasMenu setFilterByCategory={setFilterCategory}/>
       </View>
       <ScrollView style={styles.comunidadesFrame}>
         <View style={styles.comunidadFrame}>
@@ -31,7 +37,7 @@ const HomeScreen = () => {
           <View style={styles.frame26}>
             <View style={styles.group20}>
               <Pressable style={styles.rectangle32}>
-                 <Text  style={styles.saberMas} >Saber más</Text>
+                 <Text onPress={()=>navigation.navigate('Community')}  style={styles.saberMas} >Saber más</Text>
               </Pressable>
              
             </View>
@@ -111,7 +117,7 @@ const styles = {
   buscarTitulo: {
     color: '#000000',
     fontFamily: 'Inter-Regular',
-    fontSize: 10,
+    fontSize: 16,
     fontWeight: '400',
     marginBottom: 10,
     marginTop:12,

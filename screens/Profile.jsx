@@ -6,7 +6,6 @@ import mando from '../assets/mando.jpg';
 const Profile = () => {
   return (
     <View style={styles.configuracionUsuario}>
-      <Icon name="stepbackward" style={[styles.returnButtonFrame,{fontSize:25}]} />
       <View style={styles.frame37}>
         <View style={styles.avatar}>
           <Image source={mando} style={styles.avatar2} />
@@ -42,7 +41,8 @@ const styles = {
     height: '100%',
     width:'100%',
     display:'flex',
-    flexDirection:'column'
+    flexDirection:'column',
+    alignItems:'center'
   
   },
   returnButtonFrame: {

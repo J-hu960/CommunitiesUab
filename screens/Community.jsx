@@ -3,7 +3,7 @@ import { View, Text, Image, Pressable } from 'react-native';
 import mando from '../assets/mando.jpg';
 import Icon from 'react-native-vector-icons/AntDesign'; 
 
- const Community = () => {
+ const Community = ({navigation}) => {
   return (
     <View style={styles.comunidad}>
       <View style={styles.bienvenidoFrame}>
@@ -11,7 +11,7 @@ import Icon from 'react-native-vector-icons/AntDesign';
         <Image source={mando} style={styles.ellipse4} />
       </View>
       <Pressable> 
-         <Icon name="back" size={30} color="black"  style={styles.returnButtonFrame} />      
+         <Icon onPress={()=>navigation.navigate('Home')}  name="back" size={30} color="black"  style={styles.returnButtonFrame} />      
       </Pressable>
       <View style={{display:'flex',width:'100%',height:'auto',alignItems:'center',justifyContent:'center'}}>
          <Image source={mando} style={styles.rectangle14} />

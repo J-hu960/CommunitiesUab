@@ -12,9 +12,7 @@ const MyCommunities = () => {
         <Text style={styles.bienvenidoNombreUsuario}>Bienvenido, nombreUsuario</Text>
         <Image source={mando}  style={styles.ellipse4} />
       </View>
-      <Pressable style={{display:'flex',width:'100%',justifyContent:'flex-start',marginTop:10}}> 
-          <Icon name="back" size={30} color="black"  style={styles.returnButtonFrame} />      
-      </Pressable> 
+
       <View style={styles.frame44}>
              
       <View style={styles.frame51}>
