@@ -1,7 +1,39 @@
-import React from 'react';
-import { View, Text, Image, TouchableOpacity, TextInput } from 'react-native';
+import React, { useState } from 'react';
+import { View, Text, Image, TouchableOpacity, TextInput, Pressable } from 'react-native';
 import loginImg from '../../assets/loginImg.jpg'
-const Login = () => {
+import { PrivateRoutes, PublicRoutes } from '../../routes';
+import axios from 'axios';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import useUserContext from '../../hooks/useUserContext';
+
+const Login = ({navigation}) => {
+  const [email,setEmail]=useState('')
+  const [password,setPassword]=useState('')
+  const {setAuthToken,loadUser} = useUserContext()
+
+  const handleLogin=async()=>{
+    try {
+      console.log(email,password)
+
+      const response = await axios.post('http://localhost:8020/api/v1/auth/signIn', {
+             Email: email,
+             Password: password  
+});
+
+      const token = await response.data
+
+      await AsyncStorage.setItem('token',token)
+      await setAuthToken()
+      await loadUser(email)
+      navigation.navigate(PrivateRoutes.MAIN)
+
+    } catch (error) {
+      console.log(error)
+      
+    }
+
+
+  }
   return (
     <View style={styles.container}>
       <View style={styles.imageContainer}>
@@ -13,23 +45,26 @@ const Login = () => {
           <View style={styles.inputContainer}>
             <Text style={styles.label}>Email</Text>
             <View style={styles.inputBox}>
-              <TextInput style={styles.inputTextInput}></TextInput>
+              <TextInput onChangeText={text=>setEmail(text)} style={styles.inputTextInput}></TextInput>
             </View>
           </View>
           <View style={styles.inputContainer}>
             <Text style={styles.label}>Contraseña</Text>
             <View style={styles.inputBox}>
-              <TextInput  style={styles.inputTextInput}></TextInput>
+              <TextInput onChangeText={text=>setPassword(text)}  style={styles.inputTextInput}></TextInput>
             </View>
           </View>
         </View>
         <View style={styles.bottom}>
-          <TouchableOpacity style={styles.button}>
+          <TouchableOpacity onPress={()=>handleLogin()} style={styles.button}>
             <Text style={styles.buttonText}>Iniciar sesión</Text>
           </TouchableOpacity>
           <View style={styles.bottomText}>
             <Text style={styles.bottomText}>Aun no tienes cuenta?</Text>
+           <Pressable onPress={() => navigation.navigate(PublicRoutes.SIGNUP)}
+>
             <Text style={styles.registerLink}>Regístrate aquí</Text>
+           </Pressable>
           </View>
         </View>
         <Text style={styles.forgotPassword}>He olvidado mi contraseña</Text>
@@ -98,7 +133,6 @@ const styles = {
     borderRadius: 15,
     flexDirection: 'row',
     alignItems: 'center',
-    paddingHorizontal: 20,
     height: 48,
     borderWidth: 1,
     borderColor: '#000000',
@@ -108,11 +142,14 @@ const styles = {
     shadowRadius: 4,
     elevation: 4,
   },
-  inputText: {
-    color: '#a7a7a7',
+  inputTextInput: {
     fontFamily: 'Inter-Medium',
     fontSize: 13,
     fontWeight: '500',
+    height:'100%',
+    width:'100%',
+    paddingHorizontal:20
+
   },
   bottom: {
     alignItems: 'center',

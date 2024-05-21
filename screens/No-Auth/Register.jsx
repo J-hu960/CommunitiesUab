@@ -1,6 +1,7 @@
 import React from 'react';
-import { View, Text, Image, TouchableOpacity, TextInput } from 'react-native';
+import { View, Text, Image, TouchableOpacity, TextInput, Pressable } from 'react-native';
 import loginImg from '../../assets/loginImg.jpg'
+import { PublicRoutes } from '../../routes';
 
 
 const Register = () => {
@@ -35,7 +36,9 @@ const Register = () => {
           </TouchableOpacity>
           <View style={styles.bottomText}>
             <Text style={styles.bottomText}>Ya tienes cuenta?</Text>
-            <Text style={styles.loginLink}>Inicia sesión aquí</Text>
+            <Pressable onPress={() => navigation.navigate(PublicRoutes.LOGIN)}>
+              <Text style={styles.loginLink}>Inicia sesión aquí</Text>
+            </Pressable>
           </View>
         </View>
       </View>
@@ -101,7 +104,6 @@ const styles = {
     borderRadius: 15,
     flexDirection: 'row',
     alignItems: 'center',
-    paddingHorizontal: 20,
     height: 48,
     borderWidth: 1,
     borderColor: '#000000',
@@ -111,11 +113,13 @@ const styles = {
     shadowRadius: 4,
     elevation: 4,
   },
-  inputText: {
-    color: '#a7a7a7',
+  inputTextInput: {
     fontFamily: 'Inter-Medium',
     fontSize: 13,
     fontWeight: '500',
+    height:'100%',
+    width:'100%',
+    paddingHorizontal:20
   },
   bottom: {
     alignItems: 'center',

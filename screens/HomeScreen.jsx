@@ -1,21 +1,25 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { View, Text, Image, TouchableOpacity, ScrollView, Pressable, TextInput } from 'react-native';
 import mando from '../assets/mando.jpg'
 import Icon from 'react-native-vector-icons/AntDesign'; 
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import CategoriasMenu from '../components/CategoriesMenu';
 import { Touchable } from 'react-native-web';
+import useUserContext from '../hooks/useUserContext';
 
 const HomeScreen = ({navigation}) => {
+  const {user} = useUserContext()
 
   const [titleSearch,setTitleSearch]=useState('')
   const [filterCategory,setFilterCategory] = useState('')
+
+  
 
   return (
     <>
     <View style={styles.container}>
       <View style={styles.bienvenidoFrame}>
-        <Text style={styles.bienvenidoNombreUsuario}>Bienvenido, nombreUsuario</Text>
+        <Text style={styles.bienvenidoNombreUsuario}>Bienvenido, {user.Email}</Text>
         <Image source={mando} style={styles.ellipse4} />
       </View>
       <View style={styles.busquedaFrame}>
