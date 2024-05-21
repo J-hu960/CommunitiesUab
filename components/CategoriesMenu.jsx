@@ -1,58 +1,90 @@
-import { View } from 'react-native';
-import { useState } from 'react';
-import { Button, Menu, Divider, PaperProvider } from 'react-native-paper';
-import Icon from 'react-native-vector-icons/FontAwesome';
-const CategoriasMenu = ({setFilterByCategory}) => {
-    const [showMenu, setShowMenu] = useState(false);
+import React, { useState } from 'react';
+import { StyleSheet } from 'react-native';
+import { SelectCountry } from 'react-native-element-dropdown';
 
-    const openMenu = () => setShowMenu(true);
+const local_data = [
+
+  {
+    value: '',
+    lable: 'Todos',
+   
+  },
+  {
+    value: 'deportes',
+    lable: 'Deportes',
   
-    const closeMenu = () => setShowMenu(false);
+  },
+  {
+    value: 'ciencia',
+    lable: 'Ciencia',
+  
+  },
+  {
+    value: 'literatura',
+    lable: 'Literatura',
+    
+  },
+  {
+    value: 'social',
+    lable: 'Social',
+ 
+  },
+  {
+    value: 'Technology',
+    lable: 'Technology',
+ 
+  },
+];
 
-    const handleSetcategoria=(text)=>{
-      setFilterByCategory(text)
-      setTimeout(()=>{
-        closeMenu()
+const CategoriesMenu = ({category,setCategory}) => {
+  const [country, setCountry] = useState('1');
 
+  return (
+    <SelectCountry
+      style={styles.dropdown}
+      selectedTextStyle={styles.selectedTextStyle}
+      placeholderStyle={styles.placeholderStyle}
+      imageStyle={styles.imageStyle}
+      inputSearchStyle={styles.inputSearchStyle}
+      iconStyle={styles.iconStyle}
+      search
+      maxHeight={200}
+      value={category}
+      data={local_data}
+      valueField="value"
+      labelField="lable"
+      placeholder="Selecciona una categoria"
+      searchPlaceholder="Search..."
+      onChange={e => {
+        setCategory(e.value);
+      }}
+    />
+  );
+};
 
-      },100)
-    }
-      return ( 
-        <PaperProvider>
-          <View
-            style={{
-              paddingTop: 0,
-              flexDirection: 'row',
-              justifyContent: 'start',
-              marginTop:7,
-              
-            }}>
-            <Menu
-              statusBarHeight={2}
-              visible={showMenu}
-              onDismiss={closeMenu}
-              anchor={ <Icon onPress={openMenu} name="list-ul" size={30} color="black" />
-            }>
-              <Menu.Item  onPress={() => {handleSetcategoria("")}} title="Todos" />
-              <Divider />
-              <Menu.Item  onPress={() => {handleSetcategoria("tech")}} title="Tecnologia" />
-              <Divider />
-              <Menu.Item  onPress={() => {handleSetcategoria("ambiente")}} title="Ecologia" />
-              <Divider />
-              <Menu.Item  onPress={() => {handleSetcategoria("innovacion")}} title="Innovacion" />
-              <Divider />
-              <Menu.Item  onPress={() => {handleSetcategoria("gaming")}} title="Gaming" />
-              <Divider />
-              <Menu.Item  onPress={() => {handleSetcategoria("edu")}} title="Educacion" />
-              <Divider />
-              <Menu.Item  onPress={() => {handleSetcategoria("social")}} title="Social" />
-              <Divider />
-              <Menu.Item  onPress={() => {handleSetcategoria("otros")}} title="Otros" />
-             
-            </Menu>
-          </View>
-        </PaperProvider>
-      );
-}
+export default CategoriesMenu;
 
-export default CategoriasMenu
+const styles = StyleSheet.create({
+  dropdown: {
+    height: 50,
+    borderBottomColor: 'gray',
+    borderBottomWidth: 0.5,
+    width:'50%'
+  },
+ 
+  placeholderStyle: {
+    fontSize: 16,
+  },
+  selectedTextStyle: {
+    fontSize: 16,
+    marginLeft: 8,
+  },
+  iconStyle: {
+    width: 20,
+    height: 20,
+  },
+  inputSearchStyle: {
+    height: 40,
+    fontSize: 16,
+  },
+});

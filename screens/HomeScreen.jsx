@@ -7,6 +7,7 @@ import CategoriasMenu from '../components/CategoriesMenu';
 import useUserContext from '../hooks/useUserContext';
 import CommunityHomePage from '../components/CommunityHomePage';
 import axios from 'axios';
+import { useDebounce } from '../utils/useDebounce';
 const HomeScreen = ({navigation}) => {
   const {user} = useUserContext()
   const [communities,setCommunities]=useState([])
@@ -14,23 +15,38 @@ const HomeScreen = ({navigation}) => {
   const [filterCategory,setFilterCategory] = useState('')
   const [page,setPage]=useState(1)
   const [limit,setLimit]=useState(10)
+  const debouncedTitle = useDebounce(titleSearch,700)
 
-  const loadProjects = async()=>{
-    try {
-      const response = await axios.get(`http://localhost:8020/api/v1/communities`)
-       setCommunities(response.data)
-       console.log(response.data)
-      
-    } catch (error) {
-        console.log(error)
+  const loadProjects = async () => {
+    let url = `http://localhost:8020/api/v1/communities`;
+    
+  
+    if (titleSearch && filterCategory) {
+      url += `?title=${encodeURIComponent(titleSearch)}&category=${encodeURIComponent(filterCategory)}`;
+    } else if (titleSearch) {
+      url += `?title=${encodeURIComponent(titleSearch)}`;
+    } else if (filterCategory) {
+      url += `?category=${encodeURIComponent(filterCategory)}`;
     }
-
-
-  }
+  
+    try {
+      const response = await axios.get(url);
+      setCommunities(response.data);
+      console.log(response.data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  
   useEffect(()=>{
-    loadProjects()
+    if(filterCategory){
+      console.log(filterCategory)
 
-  },[page])
+
+    }
+     loadProjects()
+
+  },[page,filterCategory,debouncedTitle])
 
 
   
@@ -44,13 +60,12 @@ const HomeScreen = ({navigation}) => {
       <View style={styles.busquedaFrame}>
         <Text style={styles.conGanasDeExplorar}>Con ganas de explorar?</Text>
         <View style={styles.frame21}>
-          <TextInput  onChange={text=>setTitleSearch(text)} placeholder='Buscar título' style={styles.buscarTitulo}></TextInput>
+          <TextInput  onChangeText={text=>setTitleSearch(text)} placeholder='Buscar título' style={styles.buscarTitulo}></TextInput>
           <View style={styles.line4} />
         </View>
       </View>
       <View style={styles.categoriasFrame}>
-        <Text style={styles.categorias}>Categorías</Text>
-        <CategoriasMenu setFilterByCategory={setFilterCategory}/>
+        <CategoriasMenu category={filterCategory} setCategory={setFilterCategory}/>
       </View>
       <ScrollView style={styles.comunidadesFrame}>
         {communities && communities.length >0 ?(
