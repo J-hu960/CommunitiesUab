@@ -56,9 +56,9 @@ const Login = ({navigation}) => {
           </View>
         </View>
         <View style={styles.bottom}>
-          <TouchableOpacity onPress={()=>handleLogin()} style={styles.button}>
+          <Pressable onPress={()=>handleLogin()} style={styles.button}>
             <Text style={styles.buttonText}>Iniciar sesión</Text>
-          </TouchableOpacity>
+          </Pressable>
           <View style={styles.bottomText}>
             <Text style={styles.bottomText}>Aun no tienes cuenta?</Text>
            <Pressable onPress={() => navigation.navigate(PublicRoutes.SIGNUP)}

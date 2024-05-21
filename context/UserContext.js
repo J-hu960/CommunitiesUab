@@ -23,7 +23,7 @@ const UserContextProvider = ({ children }) => {
         try {
           const token = await AsyncStorage.getItem('token');
           if (token) {
-            const response = await axios.get(`http://192.168.1.35:8020/api/v1/users/${mail}`)
+            const response = await axios.get(`http://localhost:8020/api/v1/users/${mail}`)
             setUser(response.data);
           } else {
                  console.log('No esta autorizado')     

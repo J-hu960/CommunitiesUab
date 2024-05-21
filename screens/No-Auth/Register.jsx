@@ -1,10 +1,43 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { View, Text, Image, TouchableOpacity, TextInput, Pressable } from 'react-native';
 import loginImg from '../../assets/loginImg.jpg'
 import { PublicRoutes } from '../../routes';
+import useUserContext from '../../hooks/useUserContext';
+import axios from 'axios';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import { PrivateRoutes } from '../../routes';
 
 
-const Register = () => {
+const Register = ({navigation}) => {
+  const [email,setEmail]=useState('')
+  const [password,setPassword]=useState('')
+  const {setAuthToken,loadUser} = useUserContext()
+
+
+  const handleSignUp=async()=>{
+    try {
+      console.log(email,password)
+
+      const response = await axios.post('http://localhost:8020/api/v1/auth/signUp', {
+             Email: email,
+             Password: password  
+});
+
+      const token = await response.data
+      console.log(token)
+
+      await AsyncStorage.setItem('token',token)
+      await setAuthToken()
+      await loadUser(email)
+      navigation.navigate(PrivateRoutes.MAIN)
+
+    } catch (error) {
+      console.log(error)
+      
+    }
+
+
+  }
   return (
     <View style={styles.container}>
       <View style={styles.imageContainer}>
@@ -16,24 +49,21 @@ const Register = () => {
           <View style={styles.inputContainer}>
             <Text style={styles.label}>Email</Text>
             <View style={styles.inputBox}>
-              <TextInput  style={styles.inputTextInput}></TextInput>
+              <TextInput   onChangeText={text=>setEmail(text)} style={styles.inputTextInput}></TextInput>
             </View>
           </View>
           <View style={styles.inputContainer}>
             <Text style={styles.label}>Contraseña</Text>
             <View style={styles.inputBox}>
-              <TextInput style={styles.inputTextInput}></TextInput>
+              <TextInput onChangeText={text=>setPassword(text)} style={styles.inputTextInput}></TextInput>
             </View>
           </View>
-          <View style={styles.inputContainer}>
-          <Text style={styles.label}>Nombre de usuario</Text>
-            <TextInput style={styles.inputBox}></TextInput>
-          </View>
+        
         </View>
         <View style={styles.bottom}>
-          <TouchableOpacity style={styles.button}>
+          <Pressable onPress={()=>handleSignUp()}  style={styles.button}>
             <Text style={styles.buttonText}>Registrarse</Text>
-          </TouchableOpacity>
+          </Pressable>
           <View style={styles.bottomText}>
             <Text style={styles.bottomText}>Ya tienes cuenta?</Text>
             <Pressable onPress={() => navigation.navigate(PublicRoutes.LOGIN)}>
