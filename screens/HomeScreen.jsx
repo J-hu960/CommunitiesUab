@@ -4,17 +4,36 @@ import mando from '../assets/mando.jpg'
 import Icon from 'react-native-vector-icons/AntDesign'; 
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import CategoriasMenu from '../components/CategoriesMenu';
-import { Touchable } from 'react-native-web';
 import useUserContext from '../hooks/useUserContext';
-
+import CommunityHomePage from '../components/CommunityHomePage';
+import axios from 'axios';
 const HomeScreen = ({navigation}) => {
   const {user} = useUserContext()
-
+  const [communities,setCommunities]=useState([])
   const [titleSearch,setTitleSearch]=useState('')
   const [filterCategory,setFilterCategory] = useState('')
+  const [page,setPage]=useState(1)
+  const [limit,setLimit]=useState(10)
+
+  const loadProjects = async()=>{
+    try {
+      const response = await axios.get(`http://localhost:8020/api/v1/communities`)
+       setCommunities(response.data)
+       console.log(response.data)
+      
+    } catch (error) {
+        console.log(error)
+    }
+
+
+  }
+  useEffect(()=>{
+    loadProjects()
+
+  },[page])
+
 
   
-
   return (
     <>
     <View style={styles.container}>
@@ -34,40 +53,18 @@ const HomeScreen = ({navigation}) => {
         <CategoriasMenu setFilterByCategory={setFilterCategory}/>
       </View>
       <ScrollView style={styles.comunidadesFrame}>
-        <View style={styles.comunidadFrame}>
-          <Text style={styles.futbol7}>Fútbol 7</Text>
-          <Text style={styles.deportivo}>Deportivo</Text>
-          <Image source={mando} style={styles.rectangle31} />
-          <View style={styles.frame26}>
-            <View style={styles.group20}>
-              <Pressable style={styles.rectangle32}>
-                 <Text onPress={()=>navigation.navigate('Community')}  style={styles.saberMas} >Saber más</Text>
-              </Pressable>
-             
-            </View>
-            <View style={styles.frame39}>
-              <Text style={styles.miembros}>700 miembros</Text>
-              <Text style={styles.rating}>3.5/5</Text>
-            </View>
-          </View>
-        </View>
-        <View style={styles.comunidadFrame}>
-          <Text style={styles.futbol7}>Fútbol 7</Text>
-          <Text style={styles.deportivo}>Deportivo</Text>
-          <Image source={mando} style={styles.rectangle31} />
-          <View style={styles.frame26}>
-            <View style={styles.group20}>
-              <Pressable style={styles.rectangle32}>
-                 <Text  style={styles.saberMas} >Saber más</Text>
-              </Pressable>
-             
-            </View>
-            <View style={styles.frame39}>
-              <Text style={styles.miembros}>700 miembros</Text>
-              <Text style={styles.rating}>3.5/5</Text>
-            </View>
-          </View>
-        </View>
+        {communities && communities.length >0 ?(
+          communities.map(community=>(
+             <CommunityHomePage key={community.Pk_Communitie} navigation={navigation} community={community} />
+
+          ))
+        ):(
+          <>
+             <Text>No hay comunidades disponibles</Text>
+          </>
+        )}
+  
+
       </ScrollView>
     </View>
     </>

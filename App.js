@@ -23,6 +23,7 @@ const App = () => {
             <NavigationContainer>
                 <Stack.Navigator initialRouteName={PublicRoutes.LOGIN}>
                     <Stack.Screen name={PrivateRoutes.MAIN} component={MainTabs} options={{ headerShown: false }} />
+                    <Stack.Screen name={PrivateRoutes.COMMUNITY} component={Community} options={{ headerShown: false }} />
                     <Stack.Screen name={PublicRoutes.LOGIN} component={Login} options={{ headerShown: false }} />
                     <Stack.Screen name={PublicRoutes.SIGNUP} component={Register} options={{ headerShown: false }} />
                 </Stack.Navigator>

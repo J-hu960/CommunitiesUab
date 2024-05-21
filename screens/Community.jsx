@@ -2,16 +2,20 @@ import React from 'react';
 import { View, Text, Image, Pressable } from 'react-native';
 import mando from '../assets/mando.jpg';
 import Icon from 'react-native-vector-icons/AntDesign'; 
+import { PrivateRoutes } from '../routes';
+import useUserContext from '../hooks/useUserContext';
+ const Community = ({route,navigation}) => {
+  const {community} = route.params
+  const {user} = useUserContext()
 
- const Community = ({navigation}) => {
   return (
     <View style={styles.comunidad}>
       <View style={styles.bienvenidoFrame}>
-        <Text style={styles.bienvenidoNombreUsuario}>Bienvenido, nombreUsuario</Text>
+        <Text style={styles.bienvenidoNombreUsuario}>Bienvenido, {user.Email}</Text>
         <Image source={mando} style={styles.ellipse4} />
       </View>
       <Pressable> 
-         <Icon onPress={()=>navigation.navigate('Home')}  name="back" size={30} color="black"  style={styles.returnButtonFrame} />      
+         <Icon onPress={()=>navigation.navigate(PrivateRoutes.HOME)}  name="back" size={30} color="black"  style={styles.returnButtonFrame} />      
       </Pressable>
       <View style={{display:'flex',width:'100%',height:'auto',alignItems:'center',justifyContent:'center'}}>
          <Image source={mando} style={styles.rectangle14} />
@@ -21,8 +25,8 @@ import Icon from 'react-native-vector-icons/AntDesign';
         <Icon name="right" style={styles.frame2} />
       </View>
       <View style={styles.descripcion}>
-        <Text style={styles.comunidadDeFutbol7}>Comunidad de futbol 7</Text>
-        <Text style={styles.bienvenidos}>¡Bienvenidos a nuestra comunidad de fútbol universitario, donde el deporte se convierte en pasión y la camaradería se fusiona con la competencia! En nuestra comunidad, celebramos la diversidad de habilidades y experiencias, uniendo a estudiantes de todas las facultades y niveles de destreza bajo el emocionante estandarte del fútbol.{'\n\n'}Ya sea que seas un aficionado casual que busca disfrutar del juego o un jugador experimentado en busca de desafíos, encontrarás un lugar aquí.</Text>
+        <Text style={styles.comunidadDeFutbol7}>{community.title}</Text>
+        <Text style={styles.bienvenidos}>{community.description}</Text>
         <Pressable style={styles.button}>
           <Text style={styles.unirse}>Unirse</Text>
         </Pressable>
