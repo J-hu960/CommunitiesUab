@@ -41,14 +41,14 @@ const HomeScreen = ({navigation}) => {
   useEffect(()=>{
     if(filterCategory){
       console.log(filterCategory)
-
-
     }
      loadProjects()
 
   },[page,filterCategory,debouncedTitle])
 
-
+    if(user){
+      console.log(user)
+    }
   
   return (
     <>

@@ -1,11 +1,30 @@
-import React from 'react';
+import React, { useState,useEffect } from 'react';
 import { View, Text, Image,Pressable, ScrollView } from 'react-native';
 import Icon from 'react-native-vector-icons/AntDesign'; 
 import mando from '../assets/mando.jpg';
 import { Button } from 'react-native-web';
 import MyCommunity from '../components/MyCommunity';
+import useUserContext from '../hooks/useUserContext'
+import axios from 'axios';
 
 const MyCommunities = () => {
+  const [usersCommunities,setUsersCommunities]=useState()
+  const {user} = useUserContext()
+  const loadUsersCommunities=async()=>{
+    try {
+      const response = await axios.get(`http://localhost:8020/api/v1/communities/${user.Pk_User}`)
+      setUsersCommunities(response.data)
+      console.log(response.data)
+    } catch (error) {
+      console.log(error)
+      
+    }
+  }
+
+  useEffect(() => {
+    loadUsersCommunities()
+  }, [])
+  
   return (
     <View style={styles.misComunidadesAutoLayout}>
       <View style={styles.bienvenidoFrame}>
@@ -20,20 +39,17 @@ const MyCommunities = () => {
         </View>
 
         <ScrollView style={{display:'flex',flex:1,flexDirection:'column',width:'100%'}}>
-          <MyCommunity isAdmin={true} />
-          <MyCommunity isAdmin={true} />
-          <MyCommunity isAdmin={true} />
-          <MyCommunity isAdmin={true} />
-          <MyCommunity isAdmin={true} />
-          <MyCommunity isAdmin={true} />
-          <MyCommunity isAdmin={false} />
-          <MyCommunity isAdmin={false} />
-          <MyCommunity isAdmin={false} />
-          <MyCommunity isAdmin={false} />
-          <MyCommunity isAdmin={true} />
-          <MyCommunity isAdmin={true} />
-          <MyCommunity isAdmin={true} />
-          <MyCommunity isAdmin={true} />
+           {usersCommunities && usersCommunities.length>0 ?
+              usersCommunities.map(community=>{
+                const isAdmin = community.createdBY.Email === user.Email
+                return( 
+                <MyCommunity key={community.Pk_Communitie} community={community} isAdmin={isAdmin} />
+              
+                 )}) :(
+                <Text>¡Únete a comunidades para verlas aqui!</Text>
+              )
+           }
+          
         </ScrollView>
      
       </View>

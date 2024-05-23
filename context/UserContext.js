@@ -21,13 +21,10 @@ const UserContextProvider = ({ children }) => {
       
       const loadUser = async (mail) => {
         try {
-          const token = await AsyncStorage.getItem('token');
-          if (token) {
+  
             const response = await axios.get(`http://localhost:8020/api/v1/users/${mail}`)
             setUser(response.data);
-          } else {
-                 console.log('No esta autorizado')     
-               }
+          
         } catch (error) {
           console.log(error);
         }

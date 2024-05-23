@@ -3,11 +3,11 @@ import { View, Text, Image,Pressable, ScrollView } from 'react-native';
 import Icon from 'react-native-vector-icons/AntDesign'; 
 import mando from '../assets/mando.jpg';
 import { Button } from 'react-native-web';
-const MyCommunity = ({isAdmin}) => {
+const MyCommunity = ({community,isAdmin}) => {
   return (
      <View style={{width:'100%',height:'auto',display:'flex',flexDirection:'row',alignItems:'center',justifyContent:'space-around',marginTop:40}}>
           <Image source={mando}  style={styles.ellipse4} />
-          <Text>Comunidad de videojuegos</Text>
+          <Text>{community.title}</Text>
 
           {isAdmin ? (
              <View style={{display:'flex',flexDirection:'column',rowGap:5}}>
