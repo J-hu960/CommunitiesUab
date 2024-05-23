@@ -1,12 +1,40 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { View, Text, Image, Pressable } from 'react-native';
 import mando from '../assets/mando.jpg';
 import Icon from 'react-native-vector-icons/AntDesign'; 
 import { PrivateRoutes } from '../routes';
 import useUserContext from '../hooks/useUserContext';
+import axios from 'axios';
  const Community = ({route,navigation}) => {
   const {community} = route.params
   const {user} = useUserContext()
+
+  const [showMessage,setShowMessage] = useState(false)
+  const [message,setMessage] = useState('')
+
+  const addMemberToCOmmunity=async()=>{
+    try {
+      await axios.post(`http://localhost:8020/api/v1/communities/${community.Pk_Communitie}/${user.Pk_User}`)
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
+  const handleUnirseComunidad=async()=>{
+    try {
+      await addMemberToCOmmunity()
+      setMessage('Te has unido con éxito')
+      setShowMessage(true)
+      setTimeout(()=>{
+        setShowMessage(false)
+      },1000)
+      
+    } catch (error) {
+      console.log(error)
+      
+    }
+   
+  }
 
   return (
     <View style={styles.comunidad}>
@@ -27,9 +55,11 @@ import useUserContext from '../hooks/useUserContext';
       <View style={styles.descripcion}>
         <Text style={styles.comunidadDeFutbol7}>{community.title}</Text>
         <Text style={styles.bienvenidos}>{community.description}</Text>
-        <Pressable style={styles.button}>
+        <Pressable onPress={()=>handleUnirseComunidad()} style={styles.button}>
           <Text style={styles.unirse}>Unirse</Text>
         </Pressable>
+        {showMessage && <Text style={{color:'green',fontWeight:'bold'}}>{message}</Text>}
+
       </View>
      
     </View>
