@@ -20,6 +20,7 @@ const Tab = createBottomTabNavigator();
 const App = () => {
     return (
         <UserContextProvider>
+            <>
             <NavigationContainer>
                 <Stack.Navigator initialRouteName={PublicRoutes.LOGIN}>
                     <Stack.Screen name={PrivateRoutes.MAIN} component={MainTabs} options={{ headerShown: false }} />
@@ -28,6 +29,7 @@ const App = () => {
                     <Stack.Screen name={PublicRoutes.SIGNUP} component={Register} options={{ headerShown: false }} />
                 </Stack.Navigator>
             </NavigationContainer>
+            </>
         </UserContextProvider>
     );
 };

@@ -1,9 +1,46 @@
-import React from 'react'
+
+import React, { useState } from 'react'
 import { View, Text, Image, TouchableOpacity, ScrollView, Pressable, TextInput } from 'react-native'
 import Icon from 'react-native-vector-icons/AntDesign'; 
 import mando from '../assets/mando.jpg';
+import useUserContext from '../hooks/useUserContext';
+import axios from 'axios';
 
 export const NewCommunity = () => {
+  const {user} = useUserContext()
+   
+     const [name,setName] = useState('')
+     const [category,setCategory] = useState('')
+     const [urlPhoto,setUrlPhoto] = useState('')
+     const [link,setLink] = useState('')
+     const [description,setDescription] = useState('')
+
+     const handleAddCommunity =async ()=>{
+      try {
+        console.log(user.Pk_User)
+        await axios.post(`http://localhost:8020/api/v1/communities/${user.Pk_User}`,{
+          title:name,
+          category:category,
+          photo:urlPhoto,
+          description:description,
+          link_community:link,
+        })
+        setName('')
+        setCategory('')
+        setUrlPhoto('')
+        setLink('')
+        setDescription('')
+        
+        
+      } catch (error) {
+        console.log(error)
+        
+      }
+     
+     }
+
+
+
   return (
     <ScrollView style={styles.crearComunidadAutoLayout}>
       <View style={styles.bienvenidoFrame}>
@@ -16,7 +53,7 @@ export const NewCommunity = () => {
       <View style={styles.boxComunidadFrame}>
         <Text style={styles.crearComunidad}>CREAR COMUNIDAD</Text>
         <Text style={styles.nombreDeLaComunidad}>Nombre de la Comunidad:</Text>
-        <TextInput style={styles.nombreComunidadBox}></TextInput>
+        <TextInput onChangeText={text=>setName(text)}  style={styles.nombreComunidadBox}></TextInput>
         <Text style={styles.indicaLaCategoriaDeLaComunidad}>Indica la categoria de la comunidad:</Text>
         <View style={styles.nombreComunidadBox2}>
           <Icon name="down" style={styles.deployButton} />
@@ -24,14 +61,14 @@ export const NewCommunity = () => {
         <Text style={styles.aAdeFotosDeTuComunidad}>Añade fotos de tu comunidad:</Text>
         <Icon name="clouduploado" style={styles.uploadButtonFrame} />
         <Text style={styles.linkUrlDeTuChatPrivadoDeLaComunidad}>Link/Url de tu chat privado de la comunidad:</Text>
-        <TextInput style={styles.linkComunidadBox}></TextInput>
+        <TextInput onChangeText={text=>setLink(text)} style={styles.linkComunidadBox}></TextInput>
         <Text style={styles.descripcionDeTuComunidad}>Descripción de tu comunidad:</Text>
-        <TextInput style={styles.descripcionComunidadBox}></TextInput>
+        <TextInput onChangeText={text=>setDescription(text)} style={styles.descripcionComunidadBox}></TextInput>
         <View style={styles.frame33}>
           <View style={styles.group20}>
-            <View style={styles.rectangle32}>
+            <Pressable onPress={()=>handleAddCommunity()} style={styles.rectangle32}>
                 <Text style={styles.crear}>Crear</Text>
-            </View>
+            </Pressable>
           </View>
         </View>
       </View>

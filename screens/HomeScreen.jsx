@@ -17,7 +17,7 @@ const HomeScreen = ({navigation}) => {
   const [limit,setLimit]=useState(10)
   const debouncedTitle = useDebounce(titleSearch,700)
 
-  const loadProjects = async () => {
+  const loadCommunities = async () => {
     let url = `http://localhost:8020/api/v1/communities`;
     
   
@@ -42,7 +42,7 @@ const HomeScreen = ({navigation}) => {
     if(filterCategory){
       console.log(filterCategory)
     }
-     loadProjects()
+     loadCommunities()
 
   },[page,filterCategory,debouncedTitle])
 
