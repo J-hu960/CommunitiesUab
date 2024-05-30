@@ -3,7 +3,20 @@ import { View, Text, Image,Pressable, ScrollView } from 'react-native';
 import Icon from 'react-native-vector-icons/AntDesign'; 
 import mando from '../assets/mando.jpg';
 import { Button } from 'react-native-web';
+import axios from 'axios';
 const MyCommunity = ({community,isAdmin}) => {
+  const handleDeleteCommunity=async()=>{
+    try {
+      console.log(community.Pk_Communitie)
+      const response = await axios.delete(`http://localhost:8020/api/v1/communities/${community.Pk_Communitie}`)
+      console.log(response)
+      
+    } catch (error) {
+      console.log(error)
+
+      
+    }
+  }
   return (
      <View style={{width:'100%',height:'auto',display:'flex',flexDirection:'row',alignItems:'center',justifyContent:'space-around',marginTop:40}}>
           <Image source={mando}  style={styles.ellipse4} />
@@ -11,7 +24,7 @@ const MyCommunity = ({community,isAdmin}) => {
 
           {isAdmin ? (
              <View style={{display:'flex',flexDirection:'column',rowGap:5}}>
-             <Pressable style={{backgroundColor:'red',borderRadius:5,width:100,display:'flex',alignItems:'center'}}>
+             <Pressable onPress={()=>handleDeleteCommunity()} style={{backgroundColor:'red',borderRadius:5,width:100,display:'flex',alignItems:'center'}}>
                <Text style={{color:'white',fontWeight:'bold',padding:3}}>Eliminar</Text>
              </Pressable>
              <Pressable style={{backgroundColor:'green',borderRadius:5,width:100,display:'flex',alignItems:'center'}}>
